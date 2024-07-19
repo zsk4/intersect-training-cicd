@@ -10,12 +10,23 @@ jobs:
   dist:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-    - name: Build SDist & wheel
-      run: pipx run build
+      - name: Build SDist & wheel
+        run: pipx run build
 
-    - uses: actions/upload-artifact@v3
-      with:
-        name: build-artifact
-        path: dist/*
+      - uses: actions/upload-artifact@v3
+        with:
+          name: "build-artifact"
+          path: dist/*
+
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact
+        with:
+          name: "build-artifact"
+          path: dist
+
+      - name: Publish release
+        run: echo "Uploading!"
