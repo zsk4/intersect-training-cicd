@@ -1,0 +1,21 @@
+name: Releases
+
+on:
+    workflow_dispatch:
+    release:
+      types:
+        - published
+
+jobs:
+  dist:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Build SDist & wheel
+      run: pipx run build
+
+    - uses: actions/upload-artifact@v3
+      with:
+        name: build-artifact
+        path: dist/*
