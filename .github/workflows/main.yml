@@ -13,7 +13,7 @@ jobs:
         python-version: ["3.10","3.11"]
         allow_failure: [false]
         include:
-          - python-version: "3.13.0-beta.3"
+          - python-version: "3.12"
             allow_failure: true
 
     steps:
