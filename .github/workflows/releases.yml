@@ -1,10 +1,10 @@
 name: Releases
 
 on:
-    workflow_dispatch:
-    release:
-      types:
-        - published
+  workflow-dispatch:
+  release:
+    types:
+      - published
 
 jobs:
   dist:
@@ -21,6 +21,7 @@ jobs:
           path: dist/*
 
   publish:
+    needs: dist
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact
@@ -30,3 +31,4 @@ jobs:
 
       - name: Publish release
         run: echo "Uploading!"
+
